@@ -14,7 +14,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Xml and Html parsing
-gem 'nokogiri', '~> 1.6.7.rc3'
+gem 'nokogiri', '~> 1.6.6'
 # Pagination
 gem 'kaminari', '~> 0.16.1'
 # Attachment downloading, like pics and files etc.
@@ -27,7 +27,15 @@ gem 'slim-rails', '~> 3.0.1'
 gem 'activeadmin', github: 'activeadmin'
 # Auth tool
 gem 'devise', '~> 3.5.2'
-gem 'bcrypt-ruby' 
+# State manager
+gem 'aasm', '~> 4.3.0'
+# Fixture generators
+gem 'populator', '~> 1.0.0'
+gem 'faker', '~> 1.5.0'
+# Api
+gem 'grape', '~> 0.13.0'
+gem 'grape_logging', '~> 1.1.2'
+gem 'grape-swagger', '~> 0.10.2'
 
 group :test do
   gem 'rspec-rails', '~> 3.3.0'

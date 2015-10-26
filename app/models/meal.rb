@@ -1,0 +1,2 @@
+class Meal < Dish
+end

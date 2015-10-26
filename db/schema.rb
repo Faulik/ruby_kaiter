@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020231320) do
+ActiveRecord::Schema.define(version: 20151025182927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,5 +48,81 @@ ActiveRecord::Schema.define(version: 20151020231320) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "assets", force: :cascade do |t|
+    t.string   "filename",   limit: 45
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title",      limit: 45
+    t.integer  "sort_order"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "daily_menus", force: :cascade do |t|
+    t.integer  "day_number"
+    t.float    "max_total"
+    t.integer  "dish_ids",   default: [],              array: true
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "daily_rations", force: :cascade do |t|
+    t.float    "price"
+    t.integer  "quantity"
+    t.integer  "person_id"
+    t.integer  "daily_menu_id"
+    t.integer  "sprint_id"
+    t.integer  "dish_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "dishes", force: :cascade do |t|
+    t.string   "title",        limit: 45
+    t.integer  "sort_order"
+    t.text     "description"
+    t.float    "price"
+    t.text     "type"
+    t.integer  "children_ids",            default: [],              array: true
+    t.integer  "category_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string   "name",                                null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.integer  "failed_attempts",        default: 0,  null: false
+    t.datetime "locked_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "people", ["confirmation_token"], name: "index_people_on_confirmation_token", unique: true, using: :btree
+  add_index "people", ["email"], name: "index_people_on_email", unique: true, using: :btree
+  add_index "people", ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true, using: :btree
+
+  create_table "sprints", force: :cascade do |t|
+    t.string   "title",       limit: 45
+    t.date     "started_at"
+    t.date     "finished_at"
+    t.string   "state"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
 end
