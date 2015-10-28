@@ -1,4 +1,3 @@
-
 module API
   module Version1
     module Helpers
@@ -6,17 +5,19 @@ module API
         @warden ||= request.env["warden"]
       end
 
-      def current_user
-        @current_user ||= warden.user(:account)
+      def authenticate!
+        error!('Unauthorized. Invalid token.', 401) unless authenticate_by_token
       end
 
-      def user_logged_in?
-        warden.authenticated?(:account)
-      end
+      def authenticate_by_token
+        _user_token = params[:access_token].presence
+        _user = _user_token && Person.where(authentication_token: _user_token)
 
-      def authenticate_by_token!
-        env['devise.skip_trackable'] = true
-        warden.authenticate!(:token_authenticatable, :scope => :account)
+        if _user
+          true
+        else
+          false
+        end
       end
 
       def client_ip

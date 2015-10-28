@@ -1,4 +1,5 @@
 require 'action_dispatch/middleware/remote_ip.rb'
+require 'devise'
 
 module API
   module Version1

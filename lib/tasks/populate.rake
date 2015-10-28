@@ -78,6 +78,7 @@ namespace :populate do
       person.encrypted_password = Person.new(password: password).encrypted_password
       person.sign_in_count = 0
       person.failed_attempts = 0
+      person.authentication_token = Faker::Internet.password(15)
     end
   end
 
