@@ -15,6 +15,7 @@ goto localhost:3000
 ### Easy way #2
 
 install docker https://github.com/docker/docker
+
 install docker-compose https://github.com/docker/compose/releases
 
 - `docker-compose build`
