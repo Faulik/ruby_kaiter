@@ -17,9 +17,9 @@ goto localhost:3000
 install docker https://github.com/docker/docker
 install docker-compose https://github.com/docker/compose/releases
 
-`docker-compose build`
-`docker-compose up`
-`docker-compose run web bundle exec rake db:create db:migrate db:seed populate:all`
+- `docker-compose build`
+- `docker-compose up`
+- `docker-compose run web bundle exec rake db:create db:migrate db:seed populate:all`
 
 goto localhost:3000
 
@@ -27,11 +27,12 @@ goto localhost:3000
 
 ### How to run the test suite
 
-`bundle exec db:create db:migrate RAILS_ENV=test`
-`bundle exec rspec`
+- `bundle exec db:create db:migrate RAILS_ENV=test`
+- `bundle exec rspec`
 
 or
-`docker-compose run web bundle exec db:create db:migrate RAILS_ENV=test`
-`docker-compose run web bundle exec rspec`
+
+- `docker-compose run web bundle exec db:create db:migrate RAILS_ENV=test`
+- `docker-compose run web bundle exec rspec`
 
 Released under the MIT license
