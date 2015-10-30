@@ -10,4 +10,9 @@ RUN mkdir /backend
 WORKDIR /backend
 ADD Gemfile /backend/Gemfile
 RUN bundle install --path vendor/bundle
+RUN test -f /backend/tmp/pids/server.pid && rf /backend/tmp/pids/server.pid; true
 ADD . /backend
+
+WORKDIR /backend
+
+ENTRYPOINT ["bundle exec", "rails s -p 3000 -b 0.0.0.0"]

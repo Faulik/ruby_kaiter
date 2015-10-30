@@ -1,0 +1,48 @@
+{
+  "project": "kaiter",
+  "services": [
+    {
+      "id": "backend",
+      "apps": [
+        {
+          "id": "ruby",
+          "instances": 1,
+          "mem": 512,
+          "image": "faulik/ruby_kaiter",
+          "port_mappings": [
+            {
+              "container_port": 3000
+            }
+          ],
+          "dependencies": [
+            "../../backend/postgres"
+          ],
+          "env": {
+            "DATABASE_HOST": "postgres.backend.kaiter.faullik",
+            "DATABASE_USER": "postgres",
+            "DATABASE_PASSWORD": "",
+            "RUBY_ENV": "development"
+          }
+          },
+        {
+          "id": "postgres",
+          "instances": 1,
+          "mem": 512,
+          "image":"postgres",
+          "volumes": [
+            {
+              "container_path": "/var/lib/postgres",
+              "mode": "RW",
+              "size": "400MB"
+            }
+          ],
+          "port_mappings": [
+            {
+              "container_port": 5432
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
