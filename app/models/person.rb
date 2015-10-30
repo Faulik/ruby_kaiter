@@ -1,8 +1,8 @@
 class Person < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
+         :database_authenticatable, :token_authentication
 
   def self.generate_authentication_token
     loop do

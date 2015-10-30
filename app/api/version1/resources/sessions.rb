@@ -5,13 +5,15 @@ module API
     class Sessions < ::Grape::API
       version 'v1', using: :path
 
+      extend API::Version1::ParamsHelper
+
       resource :sessions do
         desc 'Get auth token'
         params do
           requires :email, type: String, desc: 'Email address'
           requires :password, type: String, desc: 'Password'
         end
-        get '/' do  
+        get '/' do
           _user = Person.where(email: params[:email].downcase).first
 
           if _user && _user.valid_password?(params[:password])
@@ -19,21 +21,20 @@ module API
             _user.authentication_token = _token
             _user.save
 
-            {token: _token}
+            { token: _token }
           else
             error!('Unauthoraized.', 401)
           end
         end
 
-        desc 'Remove auth token'
-        params do
-          requires :access_token, type: String, desc: 'Auth token to delete from usage'
-        end
+        desc 'Remove auth token', headers: auth_parameters
         delete '/' do
-          authenticate!
-          _user = Person.where(authentication_token: params[:access_token]).first
+          authenticate_by_token!
+          _user = current_user
           _user.authentication_token = nil
           _user.save
+          
+          { result: 'Success!' }
         end
       end
     end
