@@ -14,6 +14,10 @@
               "container_port": 3000
             }
           ],
+          "domain": {
+            "type": "HTTP",
+            "uri": "kaiter.sloppy.zone"
+          },
           "dependencies": [
             "../../backend/postgres"
           ],
