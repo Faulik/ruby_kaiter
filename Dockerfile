@@ -1,19 +1,26 @@
 FROM ruby:2.2.3
+
 # Basic parts
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
+
 # JS runtime
 RUN apt-get install -y curl
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
 RUN apt-get install -y nodejs
+
+# Supervisor
+RUN apt-get install -y supervisor
+COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 # App install
-RUN mkdir /backend
-WORKDIR /backend
-ADD Gemfile /backend/Gemfile
-RUN bundle install --path vendor/bundle
-RUN test -f /backend/tmp/pids/server.pid && rf /backend/tmp/pids/server.pid; true
-ADD . /backend
+ENV APP_HOME /app/backend
+RUN mkdir -p $APP_HOME
+WORKDIR $APP_HOME
 
-WORKDIR /backend
+ADD Gemfile* $APP_HOME/
+RUN bundle install --jobs=4
+RUN test -f $APP_HOME/tmp/pids/server.pid && rf $APP_HOME/tmp/pids/server.pid; true
+ADD . $APP_HOME
+RUN chown -R 700 $APP_HOME
 
-ENTRYPOINT ["bundle", "exec"]
-CMD ["rails s -p 3000 -b 0.0.0.0"]
+CMD ["/usr/bin/supervisord"]

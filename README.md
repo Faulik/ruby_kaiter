@@ -20,7 +20,6 @@ install docker-compose https://github.com/docker/compose/releases
 
 - `docker-compose build`
 - `docker-compose up`
-- `docker-compose run web bundle exec rake db:create db:migrate db:seed populate:all`
 
 goto localhost:3000
 

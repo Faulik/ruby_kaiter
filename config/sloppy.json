@@ -8,7 +8,8 @@
           "id": "ruby",
           "instances": 1,
           "mem": 512,
-          "image": "faulik/ruby_kaiter",
+          "image": "faulik/kaiter_backend",
+          "force_pull_image": true,
           "port_mappings": [
             {
               "container_port": 3000
@@ -25,8 +26,8 @@
             "DATABASE_HOST": "postgres.backend.kaiter.faullik",
             "DATABASE_USER": "postgres",
             "DATABASE_PASSWORD": "",
-            "RUBY_ENV": "development"
-          }
+            "RAILS_ENV": "production"
+            }
           },
         {
           "id": "postgres",
