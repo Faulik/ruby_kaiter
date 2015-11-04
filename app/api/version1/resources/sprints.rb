@@ -14,10 +14,10 @@ module API
           Sprint.order(id: :asc).all
         end
 
-        desc 'Return all rations of sprint', headers: auth_parameters
+        desc 'Return all rations in sprint for user', headers: auth_parameters
         get '/:id/rations' do
           authenticate_by_token!
-          DailyRation.where(sprint_id: params[:id])
+          DailyRation.where(sprint_id: params[:id], person_id: current_user.id)
         end
       end
     end

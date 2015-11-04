@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: daily_rations
+#
+#  id            :integer          not null, primary key
+#  price         :float
+#  quantity      :integer
+#  person_id     :integer
+#  daily_menu_id :integer
+#  sprint_id     :integer
+#  dish_id       :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class DailyRation < ActiveRecord::Base
   validates :price, presence: true
   validates :quantity, presence: true

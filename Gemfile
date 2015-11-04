@@ -36,6 +36,8 @@ gem 'faker', '~> 1.5.0'
 gem 'grape', '~> 0.13.0'
 gem 'grape_logging', '~> 1.1.2'
 gem 'grape-swagger', '~> 0.10.2'
+# CORS
+gem 'rack-cors', '~> 0.4'
 
 group :test do
   gem 'rspec-rails', '~> 3.3.0'

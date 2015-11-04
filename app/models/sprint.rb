@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: sprints
+#
+#  id          :integer          not null, primary key
+#  title       :string(45)
+#  started_at  :date
+#  finished_at :date
+#  state       :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Sprint < ActiveRecord::Base
   include AASM
   validates :title, presence: true
