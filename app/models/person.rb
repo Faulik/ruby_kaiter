@@ -27,6 +27,8 @@ class Person < ActiveRecord::Base
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :database_authenticatable, :token_authentication
 
+  has_many :daily_rations
+
   def self.generate_authentication_token
     loop do
       token = Devise.friendly_token

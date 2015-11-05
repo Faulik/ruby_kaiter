@@ -17,7 +17,8 @@ module API
         desc 'Return all rations in sprint for user', headers: auth_parameters
         get '/:id/rations' do
           authenticate_by_token!
-          DailyRation.where(sprint_id: params[:id], person_id: current_user.id)
+          DailyRation.includes(:dish).where(sprint_id: params[:id], person_id: current_user.id)
+                     .as_json(include: :dish)
         end
       end
     end

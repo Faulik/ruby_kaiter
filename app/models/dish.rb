@@ -19,5 +19,6 @@ class  Dish < ActiveRecord::Base
   validates :description, presence: true
   validates :price, presence: true
 
+  has_many :daily_rations
   belongs_to :category
 end
