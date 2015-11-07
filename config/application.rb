@@ -17,9 +17,9 @@ Bundler.require(*Rails.groups)
 
 module RubyKaiter
   class Application < Rails::Application
-    config.paths.add 'app/api', glob: '**/*.rb'
-    config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
-    
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+
     config.active_record.raise_in_transactional_callbacks = true
 
     config.middleware.insert_before 0 ,"Rack::Cors", debug: false, logger: (-> { Rails.logger }) do

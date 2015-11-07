@@ -12,8 +12,8 @@ namespace :populate do
   desc 'Create random meals'
   task meals: [:environment] do
     _categories = Category.all.pluck(:id)
-    Meal.populate(20..30) do |meal|
-      meal.title = Faker::Book.title
+    Meal.populate(40..50) do |meal|
+      meal.title = Faker::Lorem.words(3).join(' ')
       meal.description = Faker::Lorem.sentence(5)
       meal.price = rand(100)
       meal.type = 'Meal'
@@ -63,7 +63,7 @@ namespace :populate do
     _dishes = Dish.all.pluck(:id)
     DailyMenu.populate 7 do |dm|
       dm.day_number = _number
-      dm.dish_ids = convert_to_pg_array _dishes.sample 5
+      dm.dish_ids = convert_to_pg_array _dishes.sample 20
       dm.max_total = 100..150
       _number +=1
     end
