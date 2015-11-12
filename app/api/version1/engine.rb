@@ -6,6 +6,7 @@ module API
     autoload :Sessions, 'version1/resources/sessions'
     autoload :Sprints, 'version1/resources/sprints'
     autoload :DailyMenus, 'version1/resources/daily_menus'
+    autoload :DailyRations, 'version1/resources/daily_rations'
 
     class Engine < ::Grape::API
       format :json
@@ -19,8 +20,9 @@ module API
       helpers API::Version1::Helpers
 
       mount API::Version1::Sessions
-      mount API::Version1::DailyMenus
       mount API::Version1::Sprints
+      mount API::Version1::DailyMenus
+      mount API::Version1::DailyRations
 
       use Warden::Manager do |manager|
         manager.default_strategies :token_authentication

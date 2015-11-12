@@ -25,6 +25,10 @@ goto localhost:3000
 
 * name `web` might change if there are other boxes
 
+### How to debug with pry
+ 
+- `docker-compose run --service-ports backend`
+
 ### How to run the test suite
 
 - `bundle exec db:create db:migrate RAILS_ENV=test`
