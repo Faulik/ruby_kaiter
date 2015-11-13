@@ -1,7 +1,10 @@
-FROM ruby:2.2.3
+FROM ruby:2.2.3-slim
 
 # Basic parts
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev; apt-get clean
+
+# Install git
+RUN apt-get install -y git
 
 # JS runtime
 RUN apt-get install -y curl; apt-get clean
