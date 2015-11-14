@@ -1,16 +1,12 @@
 require 'grape'
 require 'warden'
+require 'utils/logger'
+require 'utils/failure_app'
+require 'version1/engine'
 
 module API
   class UnauthoraizedError < StandardError; end
   
-  autoload :Logger, 'utils/logger'
-  autoload :FailureApp, 'utils/failure_app'
-
-  module Version1
-    autoload :Engine, 'version1/engine'
-  end
-
   class Engine < ::Grape::API
     rescue_from Grape::Exceptions::Validation do |e|
       Rack::Response.new({'errors' => e.message, 'param' => e.param}.to_json, 422, {'Content-Type' => 'application/json'})
