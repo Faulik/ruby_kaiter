@@ -17,7 +17,9 @@ module API
           end          
         end
         post '/' do
-          {params: params}
+          @rations = RationsUpdater.new(params[:rations], current_user)
+          
+          {result: @rations.save}
         end
       end
     end
