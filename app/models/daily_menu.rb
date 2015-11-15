@@ -15,4 +15,10 @@ class DailyMenu < ActiveRecord::Base
   validates :max_total, presence: true
 
   has_many :daily_rations
+
+  def as_json(options = nil)
+    super ({
+      only: [:id, :day_number, :max_total, :dish_ids]
+      }).merge(options || {})
+  end
 end

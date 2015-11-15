@@ -27,7 +27,7 @@ goto localhost:3000
 
 ### How to debug with pry
  
-- `docker-compose run --service-ports backend`
+- `docker-compose run --service-ports --rm backend rails s -p 3000 -b 0.0.0.0 `
 
 ### How to run the test suite
 

@@ -38,6 +38,8 @@ gem 'grape_logging', '~> 1.1.2'
 gem 'grape-swagger', '~> 0.10.2'
 # CORS
 gem 'rack-cors', '~> 0.4'
+# Import many models at once
+gem 'activerecord-import', '~> 0.10'
 
 group :test do
   gem 'rspec-rails', '~> 3.3.0'

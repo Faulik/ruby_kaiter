@@ -14,6 +14,7 @@ module API
             requires :dish_id, type: Integer, desc: 'Dish id'
             requires :sprint_id, type: Integer, desc: 'Id of spint'
             requires :quantity, type: Integer, desc: 'Quantity of dishes in ration'
+            requires :price, type: Integer, desc: 'Price of dish in ration'
           end          
         end
         post '/' do

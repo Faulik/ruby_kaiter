@@ -21,4 +21,13 @@ class DailyRation < ActiveRecord::Base
   belongs_to :sprint
   belongs_to :daily_menu
   belongs_to :person
+
+  def as_json(options = nil)
+    super ({
+      only: [
+        :id, :price, :quantity, 
+          :person_id, :daily_menu_id, :sprint_id, :dish_id
+        ]
+      }).merge(options || {})
+  end
 end

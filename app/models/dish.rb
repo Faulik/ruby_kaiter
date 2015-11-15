@@ -21,4 +21,10 @@ class  Dish < ActiveRecord::Base
 
   has_many :daily_rations
   belongs_to :category
+
+  def as_json(options = nil)
+    super ({
+      only: [:id, :title, :description, :price, :type, :children_ids, :category_id]
+      }).merge(options || {})
+  end
 end

@@ -31,4 +31,10 @@ class Sprint < ActiveRecord::Base
       transitions from: :started, to: :closed
     end
   end
+
+  def as_json(options = nil)
+    super ({
+      only: [:id, :title, :started_at, :finished_at, :state]
+      }).merge(options || {})
+  end
 end

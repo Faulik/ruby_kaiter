@@ -13,4 +13,10 @@ class Category < ActiveRecord::Base
   validates :title, presence: true
   
   has_many :dishes
+  
+  def as_json(options = nil)
+    super ({
+      only: [:id, :title]
+      }).merge(options || {})
+  end
 end
