@@ -3,7 +3,6 @@ require 'version1/resources/helpers'
 require 'version1/resources/sessions'
 require 'version1/resources/sprints'
 require 'version1/resources/daily_menus'
-require 'version1/resources/daily_rations'
 
 module API
   module Version1
@@ -22,7 +21,6 @@ module API
       mount API::Version1::Sessions
       mount API::Version1::Sprints
       mount API::Version1::DailyMenus
-      mount API::Version1::DailyRations
 
       add_swagger_documentation base_path: '/api', hide_documentation_path: true, api_version: 'v1'
 

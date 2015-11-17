@@ -5,7 +5,7 @@ namespace :populate do
   desc 'Create random categories'
   task categories: [:environment] do
     Category.populate(2..5) do |category|
-      category.title = Faker::Lorem.word
+      category.title = Faker::Lorem.word.humanize
     end
   end
 
@@ -13,9 +13,9 @@ namespace :populate do
   task meals: [:environment] do
     _categories = Category.all.pluck(:id)
     Meal.populate(40..50) do |meal|
-      meal.title = Faker::Lorem.words(3).join(' ')
+      meal.title = Faker::Lorem.words(3).join(' ').humanize
       meal.description = Faker::Lorem.sentence(5)
-      meal.price = rand(100)
+      meal.price = rand(50)
       meal.type = 'Meal'
       meal.category_id = _categories.sample 1
     end
@@ -27,7 +27,7 @@ namespace :populate do
     _categories = Category.all.pluck(:id)
     _meals = Meal.all.pluck(:id, :price)
     BussinesDish.populate 7 do |bd|
-      bd.title = Faker::Book.title
+      bd.title = Faker::Book.title.humanize
       bd.description = Faker::Lorem.sentence(5)
       bd.type = 'BussinesDish'
       bd.category_id = _categories.sample 1
@@ -126,6 +126,7 @@ namespace :populate do
   end
 
   def find_price(array, id)
-    array.detect { |i| i[0] == id }
+    _item = array.detect { |i| i[0] == id }
+    _item[1]
   end
 end

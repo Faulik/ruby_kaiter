@@ -130,7 +130,7 @@ class RationsUpdater
     _new = @rations.group_by { |i| i.daily_menu_id}
 
     _new.each do |id, rations|
-      _sum = rations.reduce(0) {|memo, item| memo += item.price }
+      _sum = rations.reduce(0) {|memo, item| memo += item.price * item.quantity }
       if _sum > @daily_menus.select{|i| i.id == id}.first.max_total
         return "Sum for day #{id} is bigger than maximum"
       end
