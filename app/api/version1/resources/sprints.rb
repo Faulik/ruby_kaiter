@@ -11,12 +11,21 @@ module API
         desc 'Return all sprints', headers: auth_parameters
         get '/' do
           authenticate_by_token!
+
           Sprint.order(id: :asc).all
+        end
+
+        desc 'Return all sprints', headers: auth_parameters
+        get '/:id' do
+          authenticate_by_token!
+
+          Sprint.find(params[:id])
         end
 
         desc 'Return all rations in sprint for user', headers: auth_parameters
         get '/:id/rations' do
           authenticate_by_token!
+
           DailyRation.includes(:dish)
                      .where(sprint_id: params[:id], 
                             person_id: current_user.id)

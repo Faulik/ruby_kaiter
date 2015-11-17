@@ -36,6 +36,7 @@ module API
         get '/' do
           authenticate_by_token!
           _user = current_user
+
           { auth: true, 
             email: _user.email, 
             name: _user.name, 
@@ -45,6 +46,7 @@ module API
         desc 'Remove auth token', headers: auth_parameters
         delete '/' do
           authenticate_by_token!
+
           _user = current_user
           _user.authentication_token = nil
           _user.save
