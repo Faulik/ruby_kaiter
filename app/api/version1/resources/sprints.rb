@@ -22,6 +22,22 @@ module API
                             person_id: current_user.id)
                      .as_json(include: :dish)
         end
+
+        desc 'Save all rations'
+        params do
+          requires :rations, type: Array do
+            requires :daily_menu_id, type: Integer, desc: 'Daily menu id'
+            requires :dish_id, type: Integer, desc: 'Dish id'
+            requires :sprint_id, type: Integer, desc: 'Id of spint'
+            requires :quantity, type: Integer, desc: 'Quantity of dishes in ration'
+            requires :price, type: Integer, desc: 'Price of dish in ration'
+          end          
+        end
+        post '/:id/rations' do
+          @rations = RationsUpdater.new(params[:rations], current_user)
+          
+          {result: @rations.save}
+        end
       end
     end
   end
