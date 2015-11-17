@@ -48,6 +48,7 @@ group :test do
   gem 'fakeweb', '~> 1.3.0'
   gem 'fuubar', '~> 2.0.0'
   gem 'simplecov', require: false
+  gem 'api_matchers', '~> 0.6.2'
 end
 
 group :development, :test do
