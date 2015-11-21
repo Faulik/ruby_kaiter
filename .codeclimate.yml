@@ -20,8 +20,10 @@ ratings:
   - "**.jsx"
   - "**.rb"
 exclude_paths:
-  - config/**/*
-  - db/**/*
-  - spec/**/*
-  - vendor/**/*
-  - **/swagger/*
+- config/**/*
+- db/**/*
+- spec/**/*
+- vendor/**/*
+- app/assets/images/swagger/**/*
+- app/assets/javascripts/swagger/**/*
+- app/assets/stylesheets/swagger/**/*
