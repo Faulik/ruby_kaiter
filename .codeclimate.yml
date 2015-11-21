@@ -11,6 +11,11 @@ engines:
     enabled: true
   rubocop:
     enabled: true
+    checks:
+      Rubocop/Lint/UnderscorePrefixedVatiableName:
+        enabled: false
+      Rubocop/Metrics/LineLength:
+        max: 85
 ratings:
   paths:
   - Gemfile.lock
