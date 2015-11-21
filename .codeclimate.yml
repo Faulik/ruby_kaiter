@@ -12,10 +12,10 @@ engines:
   rubocop:
     enabled: true
     checks:
-      Rubocop/Lint/UnderscorePrefixedVatiableName:
+      Rubocop/Lint/UnderscorePrefixedVariableName:
         enabled: false
       Rubocop/Metrics/LineLength:
-        enabled: true
+        enabled: true 
         max: 85
 ratings:
   paths:
