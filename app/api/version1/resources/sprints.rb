@@ -2,6 +2,7 @@ require 'grape'
 
 module API
   module Version1
+    # Endpoint to serve sprint information and update sprint rations
     class Sprints < ::Grape::API
       version 'v1', using: :path
 
@@ -27,12 +28,12 @@ module API
           authenticate_by_token!
 
           DailyRation.includes(:dish)
-                     .where(sprint_id: params[:id], 
-                            person_id: current_user.id)
-                     .as_json(include: :dish)
+            .where(sprint_id: params[:id],
+                   person_id: current_user.id)
+            .as_json(include: :dish)
         end
 
-        desc 'Save all rations'
+        desc 'Save array of rations'
         params do
           requires :rations, type: Array do
             requires :daily_menu_id, type: Integer, desc: 'Daily menu id'
@@ -40,12 +41,14 @@ module API
             requires :sprint_id, type: Integer, desc: 'Id of spint'
             requires :quantity, type: Integer, desc: 'Quantity of dishes in ration'
             requires :price, type: Integer, desc: 'Price of dish in ration'
-          end          
+          end
         end
         post '/:id/rations' do
+          authenticate_by_token!
+
           @rations = RationsUpdater.new(params[:rations], current_user)
-          
-          {result: @rations.save}
+
+          { result: @rations.save }
         end
       end
     end

@@ -20,7 +20,6 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
-
 class Person < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -34,5 +33,15 @@ class Person < ActiveRecord::Base
       token = Devise.friendly_token
       break token unless Person.where(authentication_token: token).first
     end
+  end
+
+  def set_new_token
+    this.authentication_token = Person.generate_authentication_token
+    this.save
+  end
+
+  def destroy_token
+    this.authentication_token = nil
+    this.save
   end
 end

@@ -6,7 +6,7 @@ require 'version1/resources/daily_menus'
 
 module API
   module Version1
-
+    # Engine fro vesion1 api
     class Engine < ::Grape::API
       format :json
       default_format :json
@@ -22,7 +22,9 @@ module API
       mount API::Version1::Sprints
       mount API::Version1::DailyMenus
 
-      add_swagger_documentation base_path: '/api', hide_documentation_path: true, api_version: 'v1'
+      add_swagger_documentation base_path: '/api',
+                                hide_documentation_path: true,
+                                api_version: 'v1'
 
       get '/' do
         { timenow: Time.zone.now.to_i }

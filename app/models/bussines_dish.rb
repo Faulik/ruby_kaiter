@@ -13,7 +13,6 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
-
 class BussinesDish < Dish
   validates :children_ids, presence: true
 end

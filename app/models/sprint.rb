@@ -10,7 +10,6 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-
 class Sprint < ActiveRecord::Base
   include AASM
   validates :title, presence: true
@@ -35,6 +34,6 @@ class Sprint < ActiveRecord::Base
   def as_json(options = nil)
     super ({
       only: [:id, :title, :started_at, :finished_at, :state]
-      }).merge(options || {})
+    }).merge(options || {})
   end
 end

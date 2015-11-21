@@ -9,7 +9,6 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-
 class DailyMenu < ActiveRecord::Base
   validates :day_number, presence: true
   validates :max_total, presence: true
@@ -19,6 +18,6 @@ class DailyMenu < ActiveRecord::Base
   def as_json(options = nil)
     super ({
       only: [:id, :day_number, :max_total, :dish_ids]
-      }).merge(options || {})
+    }).merge(options || {})
   end
 end

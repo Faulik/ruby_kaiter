@@ -1,5 +1,6 @@
 module API
   module Version1
+    # Authenticate helpers for resources
     module Helpers
       def warden
         @warden ||= request.env['warden']
@@ -23,6 +24,7 @@ module API
       end
     end
 
+    # Module for extend in resources to accept token headers
     module ParamsHelper
       def auth_parameters
         {

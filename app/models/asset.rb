@@ -7,6 +7,5 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-
 class Asset < ActiveRecord::Base
 end

@@ -1,6 +1,6 @@
 module API
   class FailureApp
-    def self.call(env)
+    def self.call(*)
       [
         422,
         { 'Content-Type' => 'application/json' },

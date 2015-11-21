@@ -13,8 +13,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
-
-class  Dish < ActiveRecord::Base
+class Dish < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
   validates :price, presence: true
@@ -25,6 +24,6 @@ class  Dish < ActiveRecord::Base
   def as_json(options = nil)
     super ({
       only: [:id, :title, :description, :price, :type, :children_ids, :category_id]
-      }).merge(options || {})
+    }).merge(options || {})
   end
 end

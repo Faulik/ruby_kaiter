@@ -12,7 +12,6 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
-
 class DailyRation < ActiveRecord::Base
   validates :price, presence: true
   validates :quantity, presence: true
@@ -25,9 +24,9 @@ class DailyRation < ActiveRecord::Base
   def as_json(options = nil)
     super ({
       only: [
-        :id, :price, :quantity, 
-          :person_id, :daily_menu_id, :sprint_id, :dish_id
-        ]
-      }).merge(options || {})
+        :id, :price, :quantity,
+        :person_id, :daily_menu_id, :sprint_id, :dish_id
+      ]
+    }).merge(options || {})
   end
 end

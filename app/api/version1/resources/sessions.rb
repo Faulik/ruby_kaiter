@@ -3,10 +3,9 @@ require 'json'
 
 module API
   module Version1
+    # Endpoint for authentication
     class Sessions < ::Grape::API
       version 'v1', using: :path
-      format :json
-      content_type :json, 'applications/json'
 
       extend API::Version1::ParamsHelper
 
@@ -19,14 +18,17 @@ module API
           end
         end
         post '/' do
-          _user = Person.where(email: params[:auth][:email].downcase).first
+          _user = Person.find_by email: params[:auth][:email].downcase
 
           if _user && _user.valid_password?(params[:auth][:password])
-            _token = Person.generate_authentication_token
-            _user.authentication_token = _token
-            _user.save
+            _user.set_new_token
 
-            { auth: true, email: _user.email, name: _user.name, token: _token }
+            {
+              auth: true,
+              email: _user.email,
+              name: _user.name,
+              token: _user.authentication_token
+            }
           else
             error!('Unauthoraized.', 401)
           end
@@ -35,11 +37,12 @@ module API
         desc 'Auth with token'
         get '/' do
           authenticate_by_token!
+
           _user = current_user
 
-          { auth: true, 
-            email: _user.email, 
-            name: _user.name, 
+          { auth: true,
+            email: _user.email,
+            name: _user.name,
             token: _user.authentication_token }
         end
 
@@ -47,10 +50,8 @@ module API
         delete '/' do
           authenticate_by_token!
 
-          _user = current_user
-          _user.authentication_token = nil
-          _user.save
-          
+          current_user.destroy_token
+
           { result: 'Success!' }
         end
       end
