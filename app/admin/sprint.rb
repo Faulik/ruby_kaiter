@@ -8,4 +8,6 @@ ActiveAdmin.register Sprint do
     end
     f.actions
   end
+
+  permit_params :title, :started_at, :finished_at, :state
 end

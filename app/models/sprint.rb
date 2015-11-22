@@ -11,9 +11,14 @@
 #  updated_at  :datetime         not null
 #
 class Sprint < ActiveRecord::Base
+  after_create :send_emails
+
   include AASM
+
   validates :title, presence: true
   validates :state, presence: true
+  validates :started_at, presence: true
+  validates :finished_at, presence: true
 
   has_many :daily_rations
 
@@ -35,5 +40,11 @@ class Sprint < ActiveRecord::Base
     super ({
       only: [:id, :title, :started_at, :finished_at, :state]
     }).merge(options || {})
+  end
+
+  private
+
+  def send_emails
+    SprintMailer.sprint_email(self).deliver_later(wait: 20)
   end
 end

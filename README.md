@@ -1,5 +1,7 @@
 ## Kaitering
 
+[![Code Climate](https://codeclimate.com/github/Faulik/ruby_kaiter/badges/gpa.svg)](https://codeclimate.com/github/Faulik/ruby_kaiter)
+
 
 ### Easy way #1
 
