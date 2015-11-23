@@ -16,7 +16,7 @@ module API
           Sprint.order(id: :asc).all
         end
 
-        desc 'Return all sprints', headers: auth_parameters
+        desc 'Return specific sprint', headers: auth_parameters
         get '/:id' do
           authenticate_by_token!
 

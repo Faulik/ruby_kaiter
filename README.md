@@ -39,6 +39,6 @@ goto localhost:3000
 or
 
 - `docker-compose run web bundle exec db:create db:migrate RAILS_ENV=test`
-- `docker-compose run web bundle exec rspec`
+- `docker-compose run --rm rspec`
 
 Released under the MIT license

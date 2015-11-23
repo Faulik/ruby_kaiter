@@ -42,7 +42,8 @@ gem 'rack-cors', '~> 0.4'
 gem 'activerecord-import', '~> 0.10'
 # Async tasks
 gem 'sidekiq', '~> 4.0.1'
-
+# Pdf generation
+gem 'prawn', '~> 2.0.2'
 
 group :test do
   gem 'rspec-rails', '~> 3.3.0'

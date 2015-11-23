@@ -24,22 +24,22 @@ module RubyKaiter
 
     config.active_job.queue_adapter = :sidekiq
 
-    config.middleware.insert_before 0 ,"Rack::Cors", debug: false, logger: (-> { Rails.logger }) do
+    config.middleware.insert_before 0, 'Rack::Cors', debug: false, logger: (-> { Rails.logger }) do
       allow do
         origins '*'
 
         resource '/api/*',
-          headers: :any,
-          methods: [:get, :post, :delete, :put, :patch, :options, :head],
-          credentials: true,
-          max_age: 0
+                 headers: :any,
+                 methods: [:get, :post, :delete, :put, :patch, :options, :head],
+                 credentials: true,
+                 max_age: 0
       end
     end
 
     config.generators do |g|
       g.test_framework :rspec
       g.stylesheets false
-      g.javascripts false        
+      g.javascripts false
     end
   end
 end
