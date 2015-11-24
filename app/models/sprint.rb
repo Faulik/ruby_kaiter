@@ -16,7 +16,8 @@ class Sprint < ActiveRecord::Base
   include AASM
 
   validates :title, presence: true
-  validates :state, presence: true
+  validates :state, presence: true,
+            inclusion: { in: ['pending', 'started', 'closed'] }
   validates :started_at, presence: true
   validates :finished_at, presence: true
 

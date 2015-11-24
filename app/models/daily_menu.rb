@@ -20,4 +20,8 @@ class DailyMenu < ActiveRecord::Base
       only: [:id, :day_number, :max_total, :dish_ids]
     }).merge(options || {})
   end
+
+  def title
+    "Day #{day_number}"
+  end
 end

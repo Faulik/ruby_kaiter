@@ -26,6 +26,9 @@ class Person < ActiveRecord::Base
   devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
          :database_authenticatable, :token_authentication
 
+  scope :with_rations_for, ->(id) { includes(:daily_rations).where(daily_rations: { sprint_id: id }) }
+  scope :without_rations_for, ->(id) { includes(:daily_rations).where.not(daily_rations: { sprint_id: id }) }
+
   has_many :daily_rations
 
   def self.generate_authentication_token

@@ -1,4 +1,7 @@
 ActiveAdmin.register DailyRation do
+  permit_params :price, :quantity, :person_id, :daily_menu_id, :sprint_id, :dish_id
+
+  # Index page
   index do
     column :id
     column :price
@@ -15,5 +18,31 @@ ActiveAdmin.register DailyRation do
     column 'Dish' do |dr|
       link_to dr.dish.title, admin_dish_path(dr.dish)
     end
+    actions
+  end
+
+  # Update and create page
+  form do |f|
+    f.inputs 'Meal' do
+      f.input :price
+      f.input :dish_id,
+              as: :select,
+              include_blank: false,
+              collection: Dish.all
+      f.input :sprint_id,
+              as: :select,
+              include_blank: false,
+              collection: Sprint.all
+      f.input :person_id,
+              as: :select,
+              include_blank: false,
+              collection: Person.all
+      f.input :daily_menu_id,
+              as: :select,
+              include_blank: false,
+              collection: DailyMenu.all
+    end
+
+    f.actions
   end
 end

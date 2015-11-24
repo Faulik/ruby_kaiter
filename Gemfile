@@ -25,6 +25,8 @@ gem 'thin', '~> 1.6.3'
 gem 'slim-rails', '~> 3.0.1'
 # Admin interface
 gem 'activeadmin', github: 'activeadmin'
+# Select input customize
+gem 'select2-rails', '~> 4.0.0'
 # Auth tool
 gem 'devise', '~> 3.5.2'
 # State manager

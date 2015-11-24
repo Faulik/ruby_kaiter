@@ -23,7 +23,6 @@ namespace :populate do
 
   desc 'Create random bussines dish'
   task bussines_dish: [:environment] do
-    _number = 0
     _categories = Category.all.pluck(:id)
     _meals = Meal.all.pluck(:id, :price)
     BussinesDish.populate 7 do |bd|
@@ -42,14 +41,14 @@ namespace :populate do
 
   desc 'Create random sprints'
   task sprints: [:environment] do
-    _number = 0
+    _days = 0
     Sprint.populate 4 do |sprint|
       sprint.state = 'pending'
-      sprint.started_at = Date.commercial(2015, 44 + _number)
+      sprint.started_at = Date.today.beginning_of_week + _days
       # Add one week
-      _number +=1
-      sprint.finished_at = Date.commercial(2015, 44 + _number)
-      sprint.title = "Sprint # #{_number}"
+      _days += 7
+      sprint.finished_at = Date.today.beginning_of_week + _days
+      sprint.title = "Sprint # #{_days / 7}"
     end
     # Need to instantinate for some reason
     _temp = Sprint.first
@@ -59,13 +58,13 @@ namespace :populate do
 
   desc 'Create random daily menus'
   task daily_menus: [:environment] do
-    _number = 0
+    _day = 0
     _dishes = Dish.all.pluck(:id)
     DailyMenu.populate 7 do |dm|
-      dm.day_number = _number
+      dm.day_number = _day
       dm.dish_ids = convert_to_pg_array _dishes.sample 20
       dm.max_total = 100..150
-      _number +=1
+      _day +=1
     end
   end
 
