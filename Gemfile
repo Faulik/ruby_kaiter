@@ -44,6 +44,7 @@ gem 'activerecord-import', '~> 0.10'
 gem 'sidekiq', '~> 4.0.1'
 # Pdf generation
 gem 'prawn', '~> 2.0.2'
+gem 'prawn-table', '~> 0.2.2'
 
 group :test do
   gem 'rspec-rails', '~> 3.3.0'

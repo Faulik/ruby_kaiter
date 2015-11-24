@@ -4,19 +4,16 @@ ActiveAdmin.register DailyRation do
     column :price
     column :quantity
     column 'person_id' do |dr|
-      _person = Person.find(dr.person_id)
-      link_to _person.name, admin_people_path(dr.person_id)
+      link_to dr.person.name, admin_person_path(dr.person)
     end
     column 'Day' do |dr|
-      link_to dr.daily_menu_id, admin_daily_menu_path(dr.daily_menu_id)
+      link_to dr.daily_menu.id, admin_daily_menu_path(dr.daily_menu)
     end
     column 'Sprint' do |dr|
-      _sprint = Sprint.find(dr.sprint_id)
-      link_to _sprint.title, admin_sprint_path(dr.sprint_id)
+      link_to dr.sprint.title, admin_sprint_path(dr.sprint)
     end
     column 'Dish' do |dr|
-      _dish = Dish.find(dr.dish_id)
-      link_to _dish.title, admin_dish_path(dr.dish_id)
+      link_to dr.dish.title, admin_dish_path(dr.dish)
     end
   end
 end
