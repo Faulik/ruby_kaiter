@@ -48,7 +48,13 @@ module API
 
           @rations = RationsUpdater.new(params[:rations], current_user)
 
-          { result: @rations.save }
+          _result = @rations.save
+          case _result
+          when 'success'
+            { result: _result }
+          else
+            error!({ error: 'Non valid raions', detail: @rations.save }, 422)
+          end
         end
       end
     end

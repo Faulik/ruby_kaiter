@@ -39,12 +39,12 @@ class Person < ActiveRecord::Base
   end
 
   def set_new_token
-    this.authentication_token = Person.generate_authentication_token
-    this.save
+    self.authentication_token = Person.generate_authentication_token
+    self.save
   end
 
   def destroy_token
-    this.authentication_token = nil
-    this.save
+    self.authentication_token = nil
+    self.save
   end
 end
