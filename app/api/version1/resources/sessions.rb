@@ -13,8 +13,8 @@ module API
         desc 'Get auth token'
         params do
           requires :auth, type: Hash do
-            requires :email, type: String, desc: 'Email address'
-            requires :password, type: String, desc: 'Password'
+            requires :email, type: String, desc: 'User email address'
+            requires :password, type: String, desc: 'User password'
           end
         end
         post '/' do
@@ -30,7 +30,7 @@ module API
               token: _user.authentication_token
             }
           else
-            error!('Unauthoraized.', 401)
+            error!('Invalid login credentials', 422)
           end
         end
 
